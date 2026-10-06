@@ -24,7 +24,7 @@ Firefox extension for updating the same file across multiple GitHub repositories
 4. Select `manifest.json`.
 5. Click the extension icon.
 
-For a permanent install, the extension needs to be signed by Mozilla or installed through an appropriate Firefox distribution mechanism.
+For a permanent install - [Firefox Addons Page](https://addons.mozilla.org/en-US/firefox/addon/ac1d-s-github-bulk-updater/)
 
 ## GitHub token
 
