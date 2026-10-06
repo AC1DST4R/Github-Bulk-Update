@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "AC1D's GitHub Bulk Updater",
+  "version": "1.1.0",
+  "description": "Bulk update and delete files across multiple GitHub repositories using the GitHub REST API.",
+  "icons": {
+    "128": "icon.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "github-bulk-updater@ac1dst4r",
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "action": {
+    "default_title": "GitHub Bulk Updater",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icon.png"
+    }
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.github.com/*"
+  ]
+}

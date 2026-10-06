@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GitHub Bulk Updater</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>GitHub Bulk Updater</h1>
+        <p>Update multiple repositories at once.</p>
+      </div>
+      <span id="statusDot" class="dot"></span>
+    </header>
+
+    <section class="card">
+      <label for="token">GitHub token</label>
+      <div class="row">
+        <input id="token" type="password" placeholder="github_pat_..." autocomplete="off">
+        <button id="saveToken" class="secondary">Save</button>
+      </div>
+      <small>Stored locally in Firefox. Use a fine-grained token with Contents: Read and write.</small>
+      <div class="row">
+        <button id="connect">Test connection</button>
+        <span id="account"></span>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Repositories</h2>
+        <button id="loadRepos" class="secondary">Load my repos</button>
+      </div>
+      <input id="repoSearch" placeholder="Filter repositories...">
+      <div class="repo-actions">
+        <button id="selectAll" class="secondary">Select all</button>
+        <button id="selectNone" class="secondary">Select none</button>
+        <span id="repoCount">0 selected</span>
+      </div>
+      <div id="repos" class="repos">
+        <div class="empty">Connect to GitHub to load repositories.</div>
+      </div>
+      <label for="manualRepos">Or enter repositories manually</label>
+      <textarea id="manualRepos" rows="3" placeholder="AC1DST4R/Repo1&#10;AC1DST4R/Repo2"></textarea>
+    </section>
+
+    <section class="card">
+      <div class="mode-tabs">
+        <button id="updateMode" class="mode active">Update file</button>
+        <button id="deleteMode" class="mode">Delete file</button>
+      </div>
+
+      <div id="updatePanel">
+      <h2>File update</h2>
+
+      <label for="path">File path</label>
+      <input id="path" value="README.md" placeholder="README.md">
+
+      <div class="grid">
+        <div>
+          <label for="branch">Branch</label>
+          <input id="branch" placeholder="Default branch">
+        </div>
+        <div>
+          <label for="message">Commit message</label>
+          <input id="message" value="Bulk update">
+        </div>
+      </div>
+
+      <label for="content">New file contents</label>
+      <textarea id="content" class="editor" placeholder="Paste the complete contents of the file here..."></textarea>
+
+      <label class="checkbox">
+        <input id="skipUnchanged" type="checkbox" checked>
+        Skip repositories where the file already has identical contents
+      </label>
+
+      </div>
+
+      <div id="deletePanel" class="hidden">
+        <h2>Bulk delete</h2>
+        <p class="danger-note">This permanently deletes the selected file from each selected repository by creating a commit.</p>
+        <label for="deletePath">File path to delete</label>
+        <input id="deletePath" placeholder="README.md">
+        <div class="grid">
+          <div>
+            <label for="deleteBranch">Branch</label>
+            <input id="deleteBranch" placeholder="Default branch">
+          </div>
+          <div>
+            <label for="deleteMessage">Commit message</label>
+            <input id="deleteMessage" value="Bulk delete">
+          </div>
+        </div>
+        <label class="checkbox">
+          <input id="requireExisting" type="checkbox" checked>
+          Skip repositories where the file does not exist
+        </label>
+        <button id="deleteRun" class="danger">Delete file from selected repositories</button>
+      </div>
+
+      <button id="run" class="primary">Update selected repositories</button>
+      <div id="progress" class="progress hidden">
+        <div id="bar"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Results</h2>
+        <button id="clearResults" class="secondary">Clear</button>
+      </div>
+      <div id="results" class="results">
+        <div class="empty">No updates yet.</div>
+      </div>
+    </section>
+
+    <footer>
+      <a href="https://docs.github.com/en/rest/repos/contents" target="_blank">GitHub API docs</a>
+      <span>•</span>
+      <span>v1.0.0</span>
+    </footer>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
